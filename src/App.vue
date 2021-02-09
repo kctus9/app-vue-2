@@ -5,6 +5,9 @@
       <router-link to="/about">About</router-link>
     </div>
     <router-view/>
+    <footer>
+      Mon footer
+    </footer>
   </div>
 </template>
 
