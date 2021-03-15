@@ -24,7 +24,7 @@
           <!-- Render a li element for every entry in the computed filteredArticles array. -->
               
           <li v-for="stop in filteredBusStops">
-              <a v-bind:href="'/#/map/' + stop.fields.stop_id">
+              <a v-bind:href="home + 'map/' + stop.fields.stop_id">
               <p>{{stop.fields.stop_name}}</p></a>
           </li>
       </ul>
