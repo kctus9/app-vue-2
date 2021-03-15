@@ -2,8 +2,16 @@
   <div class="hello">
     
     <h1>Pick a bus stop</h1>
-    
-
+    <!--
+  <form>
+    <div style="width=100px">
+      <label for="input-with-list">Input with datalist</label>
+      <b-form-input list="input-list" id="input-with-list" v-model="form.stop"></b-form-input>
+      <b-form-datalist id="input-list" :options="this.getNames()"></b-form-datalist>
+    </div>
+    <b-button type="submit" variant="primary">Submit</b-button>
+  </form>
+-->
     <form id="main" v-cloak>
 
       <div class="bar">
@@ -15,16 +23,16 @@
       <ul>
           <!-- Render a li element for every entry in the computed filteredArticles array. -->
               
-          <li v-for="arret in filteredBusStops">
-              <a v-bind:href="map/arret.fields.stop_name">voir</a>
-              <p>{{arret.fields.stop_name}}</p>
+          <li v-for="stop in filteredBusStops">
+              <a v-bind:href="'/#/map/' + stop.fields.stop_id">
+              <p>{{stop.fields.stop_name}}</p></a>
           </li>
       </ul>
 
   </form>
 
-  <p>{{ this.data.size }}</p> 
     
+  
 
   
   </div>
@@ -41,28 +49,24 @@ export default {
   data () {
     return {
       form: {
-          arret: ''
+          stop: ''
         },
-      foo: ["oui", "non"],
-      selected: null,
-      data: null,
-      arretsNames: [],
+      data: Array,
       searchString: ""
+
     }
   },
   created: function () {
 	  //this.tri()
     //this.arrets = this.data.records
-    this.getNames()
+    //this.getNames()
     
 	},
   mounted () {
     this.axios
       .get(apiURL)
       .then( response=> (this.data = response.data.records))//,
-    //this.data.array.forEach(element =>{
-    //  console.log(element.fields.stop_name)
-    //})
+    
     
   },
   computed: {
@@ -88,17 +92,22 @@ export default {
     }
   },
   methods: {
+    onSubmit(event) {
+      event.preventDefault()
+      alert(JSON.stringify(this.form))
+      
+    },
     compare: function (a, b) {
     	return ('' + a[0]).localeCompare(b[0]);
 	  },
-    getNames: function() {
-   
-      this.data.data.records.array.forEach(element => {
-        this.arretsNames.push(element.fields.stop_name)
-        console.log(element.fields.stop_name);
-      })
-      
+    getNames: function(){
+      var tab = new Array
+      this.data.forEach(element => {
+        tab.push(element.fields.stop_name)
+        });
+    return tab
     }
+   
   }
 }
 </script>
@@ -202,16 +211,13 @@ a {
         width: 428px;
     }
 
-    ul li a{
-        width:60px;
-        height:60px;
-     
-    }
+   
 
     ul li p{
-        margin-left: 75px;
         font-weight: bold;
         padding-top: 12px;
         color:#6e7a7f;
+        text-decoration: none;
     }
+    
 </style>

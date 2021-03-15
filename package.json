@@ -7,6 +7,10 @@
     "build": "vue-cli-service build"
   },
   "dependencies": {
+    "@fortawesome/fontawesome-svg-core": "^1.2.34",
+    "@fortawesome/free-brands-svg-icons": "^5.15.2",
+    "@fortawesome/free-solid-svg-icons": "^5.15.2",
+    "@fortawesome/vue-fontawesome": "^2.0.2",
     "@popperjs/core": "^2.9.1",
     "axios": "^0.21.1",
     "bootstrap": "^5.0.0-beta2",
@@ -17,7 +21,8 @@
     "register-service-worker": "^1.7.1",
     "vue": "^2.6.11",
     "vue-axios": "^3.2.4",
-    "vue-router": "^3.2.0"
+    "vue-router": "^3.2.0",
+    "vue2-google-maps": "^0.10.7"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "~4.5.0",
