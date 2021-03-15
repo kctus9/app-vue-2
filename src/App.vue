@@ -6,7 +6,7 @@
     </div>
     <router-view/>
     <footer>
-      Mon footer
+      o
     </footer>
   </div>
 </template>

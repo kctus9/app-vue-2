@@ -1,5 +1,5 @@
 <template>
-  <div class="test">
+  <div class="map">
     <h2>Composant test</h2>
     
   </div>
@@ -7,9 +7,9 @@
 
 <script>
 export default {
-  name: 'Test',
+  name: 'Map',
   props: { // parametres entrants
-    
+    arret: null
   }
 }
 </script>

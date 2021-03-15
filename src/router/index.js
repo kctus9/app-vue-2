@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
-import Test from '../components/Test.vue'
+import Map from '../components/Map.vue'
 
 Vue.use(VueRouter)
 
@@ -20,9 +20,9 @@ const routes = [
     component: () => import(/* webpackChunkName: "about" */ '../views/About.vue')
   },
   {
-    path: '/test',
-    name: 'Test',
-    component: Test
+    path: '/map',
+    name: 'Map',
+    component: Map
   }
 ]
 

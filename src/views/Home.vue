@@ -1,24 +1,24 @@
 <template>
   <div class="home">
-    <HelloWorld :msg="msg"/>
-    <Test/>
+    <HelloWorld />
+    
   </div>
 </template>
 
 <script>
 // @ is an alias to /src
 import HelloWorld from '@/components/HelloWorld.vue'
-import Test from '@/components/Test.vue'
+import Map from '@/components/Map.vue'
 
 export default {
   name: 'Home',
   components: {
     HelloWorld,
-    Test
+    Map
   },
   data() {//arguments
     return {
-      msg: "Alexis"
+      
     }
   }
 }
