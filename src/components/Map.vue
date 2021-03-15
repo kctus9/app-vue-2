@@ -1,20 +1,21 @@
 <template>
-  <div class="map">
-    <h1>Informations about {{ this.data.data.records[0].fields.stop_name }}</h1>
-    <p v-if="this.accessible()">This bus stop is designed for wheelchairs user</p>
+  <div class="map row">
+      <div class="col-sm-12">
+      <h1>Informations about {{ this.busStopInfo.stop_name }}</h1>
+      <p v-if="this.accessible()">This bus stop is designed for wheelchairs users</p>
 
-    <div class="map">
-      <GmapMap
-        :center="{lat:this.data.data.records[0].fields.stop_coordinates[0], lng:this.data.data.records[0].fields.stop_coordinates[1]}"
-        :zoom="14"
-        map-type-id="roadmap"
-        style="width: 80%; height: 700px"
-      >
-        <GmapMarker :position="{lat: this.data.data.records[0].fields.stop_coordinates[0], lng: this.data.data.records[0].fields.stop_coordinates[1]}" />
-      </GmapMap>
+      <div class="map row">
+        <GmapMap
+          :center="{lat:this.busStopInfo.stop_coordinates[0], lng:this.busStopInfo.stop_coordinates[1]}"
+          :zoom="14"
+          map-type-id="roadmap"
+          style="width: 100%; height: 700px"
+        >
+          <GmapMarker :position="{lat: this.busStopInfo.stop_coordinates[0], lng: this.busStopInfo.stop_coordinates[1]}" />
+        </GmapMap>
+      </div>
     </div>
   </div>
-  
 </template>
 
 
@@ -29,7 +30,8 @@ export default {
   },
   data () {
     return {
-      data: null
+      data: null,
+      busStopInfo: null
   }},
   created: function () {
     //this.initMarkers()
@@ -39,11 +41,11 @@ export default {
     const vm = this
     this.axios
       .get(apiURL + this.$route.params.id)
-      .then( response=> (vm.data = response))
+      .then( response=> (vm.busStopInfo = response.data.records[0].fields))
   },
   methods: {
     accessible: function() {
-      if (this.data.data.records[0].fields.wheelchair_boarding != "0"){
+      if (this.busStopInfo.wheelchair_boarding != "0"){
         return true
       }
       else {
@@ -87,6 +89,6 @@ a {
 }
 
 .map{
-  padding: 0% 0% 0% 5%
+  padding: 0% 5% 0% 5%
 }
 </style>

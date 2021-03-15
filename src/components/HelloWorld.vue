@@ -1,40 +1,36 @@
 <template>
-  <div class="hello">
+  <div class="hello row">
     
-    <h1>Pick a bus stop</h1>
-    <!--
-  <form>
-    <div style="width=100px">
-      <label for="input-with-list">Input with datalist</label>
-      <b-form-input list="input-list" id="input-with-list" v-model="form.stop"></b-form-input>
-      <b-form-datalist id="input-list" :options="this.getNames()"></b-form-datalist>
-    </div>
-    <b-button type="submit" variant="primary">Submit</b-button>
-  </form>
--->
-    <form id="main" v-cloak>
-
-      <div class="bar">
-          <!-- Create a binding between the searchString model and the text field -->
-
-          <input type="text" v-model="searchString" placeholder="Enter your search terms" />
+    <div class="col-md-12" >
+      <h1>Pick a bus stop</h1> 
+      <!--
+    <form>
+      <div style="width=100px">
+        <label for="input-with-list">Input with datalist</label>
+        <b-form-input list="input-list" id="input-with-list" v-model="form.stop"></b-form-input>
+        <b-form-datalist id="input-list" :options="this.getNames()"></b-form-datalist>
       </div>
+      <b-button type="submit" variant="primary">Submit</b-button>
+    </form>
+  -->
+      <form id="main" v-cloak>
 
-      <ul>
-          <!-- Render a li element for every entry in the computed filteredArticles array. -->
-              
-          <li v-for="stop in filteredBusStops">
-              <a v-bind:href="home + 'map/' + stop.fields.stop_id">
-              <p>{{stop.fields.stop_name}}</p></a>
-          </li>
-      </ul>
+        <div class="bar">
+            <!-- Create a binding between the searchString model and the text field -->
+            <input type="text" v-model="searchString" placeholder="Enter your search terms" />
+        </div>
+        <ul>
+            <!-- Render a li element for every entry in the computed filteredArticles array. -->  
+            <li v-for="stop in filteredBusStops">
+                <router-link :to="{ name: 'Map' , params: { id: stop.fields.stop_id } }">
+                  <p>{{stop.fields.stop_name}}</p>
+                </router-link>
+            </li>
+        </ul>
 
-  </form>
+      </form>
 
-    
-  
-
-  
+    </div>
   </div>
 </template>
 
@@ -211,13 +207,10 @@ a {
         width: 428px;
     }
 
-   
-
     ul li p{
+        margin-left: 75px;
         font-weight: bold;
         padding-top: 12px;
         color:#6e7a7f;
-        text-decoration: none;
     }
-    
 </style>
